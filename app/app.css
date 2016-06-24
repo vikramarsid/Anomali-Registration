@@ -28,3 +28,70 @@
     content: "";
     padding: 0;
 }
+
+header.ng-scope {
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    background: #f9f9f9;
+    margin: 0 0 20px auto;
+    z-index: 10;
+    text-align: center;
+    padding: 25px;
+    border-bottom: #828394 5px solid;
+}
+
+.container.ng-scope {
+    top: 100px;
+    position: relative;
+}
+
+label.form-ele {
+    font-family: "Arial";
+    font-weight: 600;
+    font-size: 13px;
+}
+
+label#agree {
+    font-size: 12px;
+    font-weight: 700;
+    font-family: "Arial";
+}
+
+.form-control {
+    font-size: 0.75rem !important;
+    border-radius: 0 !important;
+}
+
+p.ng-scope {
+    font-size: 12px;
+    color: #ef0b36;
+    position: absolute;
+    top: 5px;
+    right: 18px;
+}
+
+p.text-help {
+    font-size: 12px;
+    text-align: center;
+    width: 101%;
+}
+
+div.sbutton {
+    text-align: center;
+}
+
+div.block {
+    background: #F5F5F5;
+}
+
+footer.ng-scope {
+    position: absolute;
+    right: 0;
+    bottom: -400px;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
