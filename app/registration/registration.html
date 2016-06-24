@@ -1,0 +1,140 @@
+<header>
+    <h3>Anomali Registration Form</h3>
+</header>
+<div class="container">
+    <div class="row clearfix">
+        <div class="card block col-xs-12 col-sm-12 col-md-8 col-lg-6  column col-sm-offset-0 col-md-offset-2 col-lg-offset-3">
+            <form name="rForm" class="form-horizontal" ng-submit="submitForm(rForm)" novalidate>
+                <fieldset>
+                    <div class="col-md-6 form-group"
+                         ng-class="{true: 'error'}[submitted && rForm.userFirstName.$invalid]">
+                        <label class="form-ele" for="fname">First Name*</label><br>
+                        <input id="fname" class="form-control" type="text" name="userFirstName" ng-model="firstName"
+                               ng-required="true"/>
+                        <div ng-messages="rForm.userFirstName.$error" ng-if='submitted || rForm.userFirstName.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group"
+                         ng-class="{true: 'error'}[submitted && rForm.userLastName.$invalid]">
+                        <label class="form-ele" for="lname">Last Name*</label><br>
+                        <input id="lname" class="form-control" type="text" name="userLastName" ng-model="lastName"
+                               ng-required="true"/>
+                        <div ng-messages="rForm.userLastName.$error" ng-if='submitted || rForm.userLastName.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group"
+                         ng-class="{true: 'error'}[submitted && rForm.companyName.$invalid]">
+                        <label class="form-ele" for="cname">Company Name*</label><br>
+                        <input id="cname" class="form-control" type="text" name="companyName" ng-model="companyName"
+                               ng-required="true"/>
+                        <div ng-messages="rForm.companyName.$error" ng-if='submitted || rForm.companyName.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group" ng-class="{true: 'error'}[submitted && rForm.userEmail.$invalid]">
+                        <label class="form-ele" for="wemail">Work Email*</label><br>
+                        <input id="wemail" class="form-control" type="email" name="userEmail" ng-model="email"
+                               ng-required="true"/>
+                        <div ng-messages="rForm.userEmail.$error" ng-if='submitted || rForm.userEmail.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                            <p ng-message="email">Your email address is invalid</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group"
+                         ng-class="{true: 'error'}[submitted && rForm.userPhoneNumber.$invalid]">
+                        <label class="form-ele" for="pnumber">Phone Number*</label><br>
+                        <input id="pnumber" class="form-control" type="tel" name="userPhoneNumber"
+                               ng-model="phoneNumber" ng-pattern="phoneRegex" ng-required="true"/>
+                        <div ng-messages="rForm.userPhoneNumber.$error"
+                             ng-if='submitted || rForm.userPhoneNumber.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                            <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group" ng-class="{true: 'error'}[submitted && rForm.country.$invalid]">
+                        <label class="form-ele" for="country">Country*</label><br>
+                        <country-select id="country" class="form-control" ng-model="country"
+                                        ng-init="country = countries[0].name" required></country-select>
+                        <p class="ng-scope" ng-show="validationFailed">This field is required</p>
+                    </div>
+
+                    <div class="col-md-6 form-group" ng-class="{true: 'error'}[submitted && rForm.state.$invalid]">
+                        <label class="form-ele" for="state">State*</label><br>
+                        <state-select id="state" class="form-control" name="state" ng-disabled="!(country.code == 'US')"
+                                      ng-model="state" ng-required="statevalidationFailed"></state-select>
+                        <p class="ng-scope" ng-show="statevalidationFailed">This field is required</p>
+                    </div>
+
+                    <div class="col-md-6 form-group" ng-class="{true: 'error'}[submitted && rForm.industry.$invalid]">
+                        <label class="form-ele" for="industry">Industry*</label><br>
+                        <select id="industry" class="form-control" ng-model="industry" name="industry"
+                                ng-options="i.name for i in industries" required>
+                            <option value=''>- Please Select -</option>
+                        </select>
+                        <div ng-messages="rForm.industry.$error" ng-if='submitted || rForm.industry.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group" ng-class="{true: 'error'}[submitted && rForm.zip.$invalid]">
+                        <label class="form-ele" for="zip">ZIP/Postal*</label><br>
+                        <input id="zip" class="form-control" type="text" name="zip" ng-model="zip" ng-pattern="zipRegex"
+                               ng-required="true"/>
+                        <div ng-messages="rForm.zip.$error" ng-if='submitted || rForm.zip.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                            <p ng-message="pattern">Please provide valid ZIP Code</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group" ng-class="{true: 'error'}[submitted && rForm.password.$invalid]">
+                        <label class="form-ele" for="pass">Password*</label><br>
+                        <input id="pass" class="form-control" type="password" name="password" ng-model="password"
+                               ng-pattern="passRegex" ng-required="true"/>
+                        <div ng-messages="rForm.password.$error" ng-if='submitted || rForm.password.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                            <p ng-message="pattern">Password requirements not met</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group"
+                         ng-class="{true: 'error'}[submitted && rForm.confirmpassword.$invalid]">
+                        <label class="form-ele" for="cpass">Confirm Password*</label><br>
+                        <input id="cpass" class="form-control" type="password" name="confirmpassword"
+                               ng-model="confirmpassword" ng-required="true" p-confirm="pass"/>
+                        <div ng-messages="rForm.confirmpassword.$error"
+                             ng-if='submitted || rForm.confirmpassword.$dirty'>
+                            <p ng-message="required">This field is required</p>
+                            <p ng-show="rForm.confirmpassword.$error.pmatch" class="ng-scope">Passwords don't match</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 form-group checkbox">
+                        <label class="form-ele" id="agree" for="iagree"> <input id="iagree" type="checkbox"
+                                                                                ng-model="agrees" name="agrees"
+                                                                                required> INTERESTED IN BECOMING A
+                            PARTNER</label>
+                        <p class="text-help">By clicking register you agree to the Anomalis Terms of use and Privacy
+                            Policy.</p>
+                        <div ng-messages="rForm.agrees.$error" ng-if='submitted || rForm.agrees.$dirty'>
+                            <p ng-message="required">Please agree to register</p>
+                        </div>
+                    </div>
+
+                    <div class="sbutton col-md-12 form-group">
+                        <button type="submit" class="btn btn-success">Register</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>Copyright 2016</p>
+</footer>
