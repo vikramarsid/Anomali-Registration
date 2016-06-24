@@ -87,7 +87,7 @@ angular.module('myApp.registration', ['ngRoute'])
                 });
         };
     })
-
+    //Directive to confirm password
     .directive('pConfirm', [function () {
         return {
             require: 'ngModel',
@@ -102,6 +102,7 @@ angular.module('myApp.registration', ['ngRoute'])
         }
     }])
 
+    // directive to select country
     .directive('countrySelect', ['$parse', function ($parse) {
         var countries = [
             {code: "", name: "- Please Select -"},
@@ -374,6 +375,8 @@ angular.module('myApp.registration', ['ngRoute'])
             }
         }
     }])
+
+    //directive to select state
     .directive('stateSelect', ['$parse', function ($parse) {
         var states = [
             {code: "", name: "- Please Select (US Only) -"},
